@@ -22,6 +22,9 @@
     <div class="eyebrow">A place to explore and learn</div>
     <h1 id="welcome-heading">Welcome to Study Hub.</h1>
     <p>Choose a subject and follow your curiosity. Pick a study area to get started.</p>
+    {% if user.is_authenticated %}
+    <p class="student-greeting">Welcome, <strong>{{ user.username }}</strong>.</p>
+    {% endif %}
   </section>
 
   <section class="subjects" aria-label="Study subjects">

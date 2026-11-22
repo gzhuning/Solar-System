@@ -9,8 +9,13 @@
     * { box-sizing: border-box; }
     body { margin: 0; min-height: 100vh; }
     a { color: inherit; }
-    .topbar { padding: 1rem clamp(1rem, 5vw, 4rem); border-bottom: 1px solid #26344a; background: #0d1524; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem clamp(1rem, 5vw, 4rem); border-bottom: 1px solid #26344a; background: #0d1524; }
     .brand { color: #c8d8f2; font-size: .82rem; font-weight: 700; letter-spacing: .16em; text-decoration: none; }
+    .account-nav { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: .8rem; color: #c8d8f2; font-size: .92rem; }
+    .account-nav a { color: #a9c9fa; text-decoration: none; }
+    .account-nav form { margin: 0; }
+    .account-nav button { border: 0; padding: 0; background: none; color: #a9c9fa; font: inherit; cursor: pointer; }
+    .account-nav button:hover, .account-nav a:hover { color: white; }
     main { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; }
     .eyebrow { color: #80a9e8; font-size: .76rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
     .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: .75rem 1.1rem; border: 1px solid #76a9ff; border-radius: 12px; background: #2f69c3; color: white; font-weight: 700; text-decoration: none; transition: background .18s, transform .18s; }
@@ -22,7 +27,21 @@
   {% block head %}{% endblock %}
 </head>
 <body>
-  <header class="topbar"><a class="brand" href="{% url 'solar_system:home' %}">STUDY HUB</a></header>
+  <header class="topbar">
+    <a class="brand" href="{% url 'solar_system:home' %}">STUDY HUB</a>
+    <nav class="account-nav" aria-label="Account">
+      {% if user.is_authenticated %}
+        <span>Signed in as <strong>{{ user.username }}</strong></span>
+        <form method="post" action="{% url 'solar_system:logout' %}">
+          {% csrf_token %}
+          <button type="submit">Log out</button>
+        </form>
+      {% else %}
+        <a href="{% url 'solar_system:login' %}">Log in</a>
+        <a href="{% url 'solar_system:signup' %}">Sign up</a>
+      {% endif %}
+    </nav>
+  </header>
   {% block content %}{% endblock %}
 </body>
 </html>
