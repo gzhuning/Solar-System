@@ -22,6 +22,10 @@ Open <http://127.0.0.1:8000/> in your browser to see Study Hub. Choose **Science
 .\.venv\Scripts\python.exe manage.py runserver
 ```
 
+## Database on Vercel
+
+Local development uses SQLite. Vercel Functions have a read-only application filesystem, so deployed student accounts need a persistent PostgreSQL database. Connect a PostgreSQL provider to the Vercel project and expose its connection string as `DATABASE_URL` for Production (and Preview, if needed). Django uses that URL automatically. Run `python manage.py migrate` against the configured database once to create Django's authentication tables.
+
 ## A few Django words
 
 - **Project** (`config/`) is the main configuration for the website.
