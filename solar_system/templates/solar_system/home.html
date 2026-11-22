@@ -1,0 +1,38 @@
+{% extends 'solar_system/base.html' %}
+
+{% block title %}Study Hub{% endblock %}
+
+{% block head %}
+  <style>
+    .welcome { padding: clamp(3.5rem, 9vw, 7rem) 0 2.25rem; }
+    h1 { max-width: 720px; margin: .8rem 0; font-size: clamp(2.8rem, 8vw, 5.5rem); line-height: .98; letter-spacing: -.055em; }
+    .welcome p { max-width: 560px; color: #aab9d0; font-size: 1.08rem; line-height: 1.7; }
+    .subjects { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 1rem; padding: .75rem 0 4rem; }
+    .subject-card { display: flex; min-height: 230px; flex-direction: column; align-items: flex-start; padding: 1.5rem; border: 1px solid #2a3b56; border-radius: 20px; background: linear-gradient(145deg, #15233a, #101827 75%); }
+    .subject-icon { display: grid; width: 46px; height: 46px; place-items: center; border-radius: 14px; background: #203e66; color: #9cc7ff; font-size: 1.4rem; }
+    .subject-card h2 { margin: 1.3rem 0 .35rem; font-size: 1.35rem; }
+    .subject-card p { flex: 1; margin: 0 0 1.25rem; color: #aab9d0; line-height: 1.6; }
+    .subject-card .button { width: 100%; }
+  </style>
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="welcome" aria-labelledby="welcome-heading">
+    <div class="eyebrow">A place to explore and learn</div>
+    <h1 id="welcome-heading">Welcome to Study Hub.</h1>
+    <p>Choose a subject and follow your curiosity. Pick a study area to get started.</p>
+  </section>
+
+  <section class="subjects" aria-label="Study subjects">
+    {% for subject in subjects %}
+    <article class="subject-card">
+      <span class="subject-icon" aria-hidden="true">✦</span>
+      <h2>{{ subject.name }}</h2>
+      <p>{{ subject.description }}</p>
+      <a class="button" href="{% url subject.url_name %}">{{ subject.button_label }} <span aria-hidden="true">&nbsp;→</span></a>
+    </article>
+    {% endfor %}
+  </section>
+</main>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Study Hub{% endblock %}</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #080d18; color: #eef3ff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; }
+    a { color: inherit; }
+    .topbar { padding: 1rem clamp(1rem, 5vw, 4rem); border-bottom: 1px solid #26344a; background: #0d1524; }
+    .brand { color: #c8d8f2; font-size: .82rem; font-weight: 700; letter-spacing: .16em; text-decoration: none; }
+    main { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; }
+    .eyebrow { color: #80a9e8; font-size: .76rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: .75rem 1.1rem; border: 1px solid #76a9ff; border-radius: 12px; background: #2f69c3; color: white; font-weight: 700; text-decoration: none; transition: background .18s, transform .18s; }
+    .button:hover { background: #3b7be0; transform: translateY(-1px); }
+    .button:focus-visible, a:focus-visible { outline: 3px solid #f4ce77; outline-offset: 3px; }
+    .back-link { display: inline-block; margin: 1.5rem 0; color: #a9c9fa; text-decoration: none; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="{% url 'solar_system:home' %}">STUDY HUB</a></header>
+  {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'solar_system/base.html' %}
+
+{% block title %}Science Study | Study Hub{% endblock %}
+
+{% block head %}
+  <style>
+    main { width: 100%; }
+    .science-heading { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; }
+    h1 { margin: 0 0 .4rem; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -.04em; }
+    .science-heading p { margin: 0 0 1rem; color: #aab9d0; }
+    .playground { display: block; width: 100%; height: calc(100vh - 190px); min-height: 520px; border: 0; background: #080d18; }
+    .open-link { display: inline-block; margin: .25rem 0 1rem; color: #a9c9fa; }
+    @media (max-width: 600px) { .playground { height: calc(100vh - 220px); min-height: 420px; } }
+  </style>
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="science-heading">
+    <a class="back-link" href="{% url 'solar_system:home' %}">← Back to Study Hub</a>
+    <div class="eyebrow">Study subject</div>
+    <h1>Science Study</h1>
+    <p>Welcome to our solar system! Explore the planets, their orbits, and the moons of Earth and Jupiter.</p>
+    <a class="open-link" href="{% url 'solar_system:playground' %}" target="_blank" rel="noopener">Open the explorer in a new tab ↗</a>
+  </section>
+  <iframe class="playground" src="{% url 'solar_system:playground' %}" title="Interactive solar system playground" allowfullscreen></iframe>
+</main>
+{% endblock %}
