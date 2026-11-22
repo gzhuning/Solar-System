@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7_sy$8(#gr0dh_)yt_*!cl1y+9ep@ns@^5^zn09d)drlrnrolz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['solar-system-mu-two.vercel.app', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', 'localhost']
 
 
 # Application definition
